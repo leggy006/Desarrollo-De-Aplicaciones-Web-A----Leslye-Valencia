@@ -2,143 +2,493 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arte en Cada Trazo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Arte en Cada Trazo</title>
+
+<!-- Bootstrap CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background-color:#f8f4f0;
+}
+
+/* Header */
+
+header{
+    background:linear-gradient(to right,#d4a373,#faedcd);
+    padding:30px;
+    text-align:center;
+    color:white;
+}
+
+/* Sección inicio */
+
+.inicio{
+    background-color:white;
+    border-radius:15px;
+    padding:30px;
+    margin-top:20px;
+    box-shadow:0px 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Tarjetas */
+
+.card{
+
+transition:0.4s;
+
+}
+
+.card:hover{
+
+transform:scale(1.05);
+
+}
+
+/* Imagen */
+
+.imagen{
+
+border-radius:15px;
+
+box-shadow:0px 4px 10px rgba(0,0,0,0.3);
+
+}
+
+/* Aside */
+
+aside{
+
+background-color:#faedcd;
+padding:20px;
+border-radius:15px;
+margin:20px;
+
+}
+
+/* Footer */
+
+footer{
+
+background-color:#d4a373;
+color:white;
+padding:15px;
+text-align:center;
+
+}
+
+/* Media Query */
+
+@media(max-width:768px){
+
+header h1{
+
+font-size:28px;
+
+}
+
+.inicio{
+
+text-align:center;
+
+}
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-    <header>
-        <h1>Arte en Cada Trazo</h1>
-    </header>
+<header>
 
-    <nav>
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#quienes">Quiénes Somos</a></li>
-            <li><a href="#servicios">Servicios o Productos</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
-    </nav>
+<h1>Arte en Cada Trazo</h1>
+<p>Transformamos emociones en recuerdos únicos</p>
 
-    <main>
+</header>
 
-        <section id="inicio">
-            <article>
-                <h2>Inicio</h2>
-                <p>
-                    Bienvenidos a Arte en Cada Trazo, un emprendimiento dedicado a
-                    transformar recuerdos y emociones en obras artísticas únicas.
-                    Aquí se realizan retratos, dibujos y pinturas personalizadas
-                    con creatividad y dedicación para cada cliente.
-                </p>
-            </article>
-        </section>
 
-        <section id="quienes">
-            <article>
+<!-- NAVBAR RESPONSIVA -->
 
-                <h2>Quiénes Somos</h2>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-                <p>
-                    Arte en Cada Trazo es un emprendimiento enfocado en la creación
-                    de retratos, dibujos y pinturas personalizadas que buscan
-                    capturar momentos especiales y convertirlos en recuerdos únicos.
-                    Este proyecto nace de la pasión por el arte y el deseo de
-                    transmitir emociones mediante cada detalle realizado en una
-                    ilustración. Nuestro objetivo es ofrecer trabajos creativos y
-                    personalizados adaptados a los gustos y necesidades de cada
-                    cliente. Cada dibujo es elaborado con dedicación, paciencia y
-                    cuidado, buscando expresar sentimientos y preservar momentos
-                    importantes como aniversarios, celebraciones, retratos familiares
-                    o recuerdos especiales. Además de brindar un producto artístico,
-                    también buscamos generar experiencias significativas y crear un
-                    espacio donde las personas puedan encontrar una manera especial
-                    de expresar emociones y conservar recuerdos importantes a través
-                    del arte.
-                </p>
+<div class="container">
 
-                <img src="portafolio.jpg" alt="Mis obras" width="500">
+<a class="navbar-brand" href="#">
+Arte 🎨
+</a>
 
-            </article>
-        </section>
+<button class="navbar-toggler"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#menu">
 
-        <section id="servicios">
-            <article>
+<span class="navbar-toggler-icon"></span>
 
-                <h2>Servicios o Productos</h2>
+</button>
 
-                <ul>
-                    <li>Retratos personalizados</li>
-                    <li>Dibujos a lápiz</li>
-                    <li>Pinturas artísticas</li>
-                    <li>Ilustraciones digitales</li>
-                    <li>Diseños personalizados</li>
-                </ul>
+<div class="collapse navbar-collapse" id="menu">
 
-            </article>
-        </section>
+<ul class="navbar-nav ms-auto">
 
-        <section id="contacto">
-            <article>
+<li class="nav-item">
 
-                <h2>Contacto</h2>
+<a class="nav-link" href="#inicio">
+Inicio
+</a>
 
-                <p><strong>Correo:</strong> leggy.val.art@gmail.com</p>
+</li>
 
-                <p><strong>Teléfono:</strong> +593 99231755</p>
+<li class="nav-item">
 
-                <p><strong>Dirección:</strong> Santo Domingo, Ecuador</p>
+<a class="nav-link" href="#quienes">
+Quiénes Somos
+</a>
 
-                <p>Redes sociales:</p>
+</li>
 
-                <a href="https://www.instagram.com/leggy_val/" target="_blank">
-                    Instagram
-                </a>
+<li class="nav-item">
 
-                <br><br>
+<a class="nav-link" href="#servicios">
+Servicios
+</a>
 
-            </article>
-        </section>
+</li>
 
-        <section>
+<li class="nav-item">
 
-            <article>
+<a class="nav-link" href="#contacto">
+Contacto
+</a>
 
-                <h2>Video relacionado</h2>
+</li>
 
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/GVhtScCRD58?si=uwtBQstDAsr8TfTE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</ul>
 
-            </article>
+</div>
 
-        </section>
+</div>
 
-    </main>
+</nav>
 
-    <aside>
 
-        <h3>Información adicional</h3>
+<main class="container">
 
-        <p>
-            Promoción especial: 10% de descuento en retratos personalizados.
-        </p>
+<!-- INICIO -->
 
-        <p>
-            Horarios de atención:
-            Lunes a Viernes de 09:00 a 18:00.
-        </p>
+<section id="inicio">
 
-    </aside>
+<article class="inicio text-center p-3 m-3">
 
-    <footer>
+<h2>Bienvenidos</h2>
 
-        <p>
-            Leslye Valencia | Desarrollo de Aplicaciones Web | 2026
-        </p>
+<p>
 
-    </footer>
+Bienvenidos a Arte en Cada Trazo, un emprendimiento dedicado a transformar recuerdos y emociones en obras artísticas únicas. Aquí realizamos retratos, dibujos y pinturas personalizadas con creatividad y dedicación.
+
+</p>
+
+<button class="btn btn-warning m-2">
+Ver trabajos
+</button>
+
+<button class="btn btn-dark m-2">
+Contáctanos
+</button>
+
+</article>
+
+</section>
+
+
+<!-- QUIENES SOMOS -->
+
+<section id="quienes">
+
+<article>
+
+<h2 class="text-center m-3">
+Quiénes Somos
+</h2>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<p>
+
+Arte en Cada Trazo es un emprendimiento enfocado en la creación de retratos, dibujos y pinturas personalizadas que buscan capturar momentos especiales y convertirlos en recuerdos únicos.
+
+Cada trabajo se realiza con dedicación, paciencia y creatividad para ofrecer experiencias significativas a cada cliente.
+
+</p>
+
+</div>
+
+<div class="col-md-6">
+
+<img src="portafolio.jpg"
+class="img-fluid imagen"
+alt="Mis obras">
+
+</div>
+
+</div>
+
+</article>
+
+</section>
+
+
+<!-- SERVICIOS -->
+
+<section id="servicios">
+
+<h2 class="text-center m-4">
+Servicios o Productos
+</h2>
+
+<div class="row">
+
+<div class="col-md-4">
+
+<div class="card p-3 m-3">
+
+<div class="card-body">
+
+<h5 class="card-title">
+Retratos personalizados
+</h5>
+
+<p>
+
+Retratos elaborados con detalles únicos y personalizados.
+
+</p>
+
+<button class="btn btn-primary">
+Ver más
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-3 m-3">
+
+<div class="card-body">
+
+<h5 class="card-title">
+Dibujos a lápiz
+</h5>
+
+<p>
+
+Creaciones artísticas realizadas con precisión y creatividad.
+
+</p>
+
+<button class="btn btn-primary">
+
+Ver más
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-3 m-3">
+
+<div class="card-body">
+
+<h5 class="card-title">
+Ilustraciones digitales
+</h5>
+
+<p>
+
+Diseños digitales personalizados según tus ideas.
+
+</p>
+
+<button class="btn btn-primary">
+
+Ver más
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACTO -->
+
+<section id="contacto">
+
+<article>
+
+<h2 class="text-center m-4">
+
+Contacto
+
+</h2>
+
+<form>
+
+<div class="mb-3">
+
+<label class="form-label">
+
+Nombre
+
+</label>
+
+<input type="text"
+class="form-control">
+
+</div>
+
+
+<div class="mb-3">
+
+<label class="form-label">
+
+Correo electrónico
+
+</label>
+
+<input type="email"
+class="form-control">
+
+</div>
+
+
+<div class="mb-3">
+
+<label class="form-label">
+
+Asunto
+
+</label>
+
+<input type="text"
+class="form-control">
+
+</div>
+
+
+<div class="mb-3">
+
+<label class="form-label">
+
+Mensaje
+
+</label>
+
+<textarea class="form-control">
+
+</textarea>
+
+</div>
+
+<button class="btn btn-success">
+
+Enviar
+
+</button>
+
+</form>
+
+
+<br>
+
+<a href="mailto:leggy.val.art@gmail.com"
+class="btn btn-danger">
+
+Correo
+
+</a>
+
+<a href="https://www.instagram.com/leggy_val/"
+target="_blank"
+class="btn btn-dark">
+
+Instagram
+
+</a>
+
+<a href="#"
+class="btn btn-primary">
+
+Ubicación
+
+</a>
+
+</article>
+
+</section>
+
+</main>
+
+
+<aside>
+
+<h3>
+
+Información adicional
+
+</h3>
+
+<p>
+
+🎨 Promoción especial: 10% de descuento en retratos personalizados.
+
+</p>
+
+<p>
+
+🕒 Horario:
+Lunes a Viernes de 09:00 a 18:00
+
+</p>
+
+</aside>
+
+
+<footer>
+
+<p>
+
+Leslye Valencia | Desarrollo de Aplicaciones Web | 2026
+
+</p>
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>
