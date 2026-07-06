@@ -77,13 +77,18 @@ margin-top:30px;
 
 }
 
-
 #listaSolicitudes .card{
 
 margin-bottom:15px;
 
 }
 
+.text-danger{
+
+font-size:14px;
+margin-top:5px;
+
+}
 
 @media(max-width:768px){
 

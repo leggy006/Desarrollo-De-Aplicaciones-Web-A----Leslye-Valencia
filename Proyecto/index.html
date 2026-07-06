@@ -28,13 +28,12 @@ Transformamos emociones en recuerdos únicos
 
 </header>
 
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
 <div class="container">
 
 <a class="navbar-brand" href="#">
-Arte 
+Arte
 </a>
 
 <button
@@ -52,43 +51,23 @@ data-bs-target="#menu">
 <ul class="navbar-nav ms-auto">
 
 <li class="nav-item">
-
-<a class="nav-link" href="#inicio">
-Inicio
-</a>
-
+<a class="nav-link" href="#inicio">Inicio</a>
 </li>
 
 <li class="nav-item">
-
-<a class="nav-link" href="#quienes">
-Quiénes Somos
-</a>
-
+<a class="nav-link" href="#quienes">Quiénes Somos</a>
 </li>
 
 <li class="nav-item">
-
-<a class="nav-link" href="#servicios">
-Servicios
-</a>
-
+<a class="nav-link" href="#servicios">Servicios</a>
 </li>
 
 <li class="nav-item">
-
-<a class="nav-link" href="#contacto">
-Contacto
-</a>
-
+<a class="nav-link" href="#contacto">Contacto</a>
 </li>
 
 <li class="nav-item">
-
-<a class="nav-link" href="#solicitudes">
-Solicitudes
-</a>
-
+<a class="nav-link" href="#solicitudes">Solicitudes</a>
 </li>
 
 </ul>
@@ -106,14 +85,10 @@ Solicitudes
 
 <article class="inicio text-center p-3 m-3">
 
-<h2>
-Bienvenidos
-</h2>
+<h2>Bienvenidos</h2>
 
 <p>
-
 Bienvenidos a Arte en Cada Trazo, un emprendimiento dedicado a transformar recuerdos y emociones en obras artísticas únicas.
-
 </p>
 
 <button class="btn btn-warning m-2">
@@ -128,6 +103,7 @@ Contáctanos
 
 </section>
 
+
 <section id="quienes">
 
 <h2 class="text-center m-4">
@@ -139,9 +115,7 @@ Quiénes Somos
 <div class="col-md-6">
 
 <p>
-
 Arte en Cada Trazo es un emprendimiento enfocado en la creación de retratos, dibujos y pinturas personalizadas.
-
 </p>
 
 </div>
@@ -178,9 +152,7 @@ Retratos personalizados
 </h5>
 
 <p>
-
 Retratos únicos personalizados.
-
 </p>
 
 </div>
@@ -201,9 +173,7 @@ Dibujos a lápiz
 </h5>
 
 <p>
-
 Creaciones artísticas detalladas.
-
 </p>
 
 </div>
@@ -224,9 +194,7 @@ Ilustraciones digitales
 </h5>
 
 <p>
-
 Diseños digitales personalizados.
-
 </p>
 
 </div>
@@ -243,9 +211,7 @@ Diseños digitales personalizados.
 <section id="contacto">
 
 <h2 class="text-center m-4">
-
 Contacto
-
 </h2>
 
 <form>
@@ -285,13 +251,10 @@ Enviar
 </section>
 
 
-
 <section id="solicitudes">
 
 <h2 class="text-center m-4">
-
 Registrar Solicitud
-
 </h2>
 
 <div class="row">
@@ -302,42 +265,34 @@ Registrar Solicitud
 
 <div class="mb-3">
 
-<label>
-
-Nombre cliente
-
-</label>
+<label>Nombre cliente</label>
 
 <input
 type="text"
 id="nombre"
 class="form-control">
 
+<div id="errorNombre"></div>
+
 </div>
 
 
 <div class="mb-3">
 
-<label>
-
-Descripción
-
-</label>
+<label>Descripción</label>
 
 <textarea
 id="descripcion"
 class="form-control"></textarea>
 
+<div id="errorDescripcion"></div>
+
 </div>
 
 
 <div class="mb-3">
 
-<label>
-
-Tipo
-
-</label>
+<label>Tipo</label>
 
 <select
 id="tipo"
@@ -361,8 +316,9 @@ Ilustración digital
 
 </select>
 
-</div>
+<div id="errorTipo"></div>
 
+</div>
 
 <button
 type="submit"
@@ -374,6 +330,8 @@ Agregar solicitud
 
 </form>
 
+<br>
+
 <div id="mensaje"></div>
 
 </div>
@@ -382,19 +340,14 @@ Agregar solicitud
 <div class="col-md-6">
 
 <h4>
-
 Solicitudes registradas
-
 </h4>
 
 <p>
 
 Total:
-
 <span id="contador">
-
 0
-
 </span>
 
 </p>
@@ -413,15 +366,11 @@ Total:
 <aside>
 
 <h3>
-
 Información adicional
-
 </h3>
 
 <p>
-
 10% descuento en retratos
-
 </p>
 
 </aside>
@@ -430,17 +379,15 @@ Información adicional
 <footer>
 
 <p>
-
 Leslye Valencia | Desarrollo de Aplicaciones Web | 2026
-
 </p>
 
 </footer>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>

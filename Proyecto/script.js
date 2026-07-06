@@ -1,32 +1,132 @@
-const formulario=document.getElementById(
-"formularioSolicitud"
-);
+const formulario=document.getElementById("formularioSolicitud");
 
-const nombre=document.getElementById(
-"nombre"
-);
+const nombre=document.getElementById("nombre");
+const descripcion=document.getElementById("descripcion");
+const tipo=document.getElementById("tipo");
 
-const descripcion=document.getElementById(
-"descripcion"
-);
+const errorNombre=document.getElementById("errorNombre");
+const errorDescripcion=document.getElementById("errorDescripcion");
+const errorTipo=document.getElementById("errorTipo");
 
-const tipo=document.getElementById(
-"tipo"
-);
-
-const mensaje=document.getElementById(
-"mensaje"
-);
-
-const lista=document.getElementById(
-"listaSolicitudes"
-);
-
-const contador=document.getElementById(
-"contador"
-);
+const mensaje=document.getElementById("mensaje");
+const lista=document.getElementById("listaSolicitudes");
+const contador=document.getElementById("contador");
 
 let total=0;
+
+
+function mostrarError(campo,mensajeError,contenedor){
+
+campo.classList.remove("is-valid");
+campo.classList.add("is-invalid");
+
+contenedor.innerHTML=`
+<div class="text-danger">
+${mensajeError}
+</div>
+`;
+
+return false;
+
+}
+
+
+function mostrarExito(campo,contenedor){
+
+campo.classList.remove("is-invalid");
+campo.classList.add("is-valid");
+
+contenedor.innerHTML="";
+
+return true;
+
+}
+
+
+function validarNombre(){
+
+if(nombre.value.trim().length<3){
+
+return mostrarError(
+nombre,
+"El nombre debe tener mínimo 3 caracteres",
+errorNombre
+);
+
+}
+
+return mostrarExito(
+nombre,
+errorNombre
+);
+
+}
+
+
+function validarDescripcion(){
+
+if(descripcion.value.trim().length<10){
+
+return mostrarError(
+descripcion,
+"Debe escribir mínimo 10 caracteres",
+errorDescripcion
+);
+
+}
+
+return mostrarExito(
+descripcion,
+errorDescripcion
+);
+
+}
+
+
+function validarTipo(){
+
+if(tipo.value===""){
+
+return mostrarError(
+tipo,
+"Seleccione una categoría",
+errorTipo
+);
+
+}
+
+return mostrarExito(
+tipo,
+errorTipo
+);
+
+}
+
+
+nombre.addEventListener(
+"input",
+validarNombre
+);
+
+nombre.addEventListener(
+"blur",
+validarNombre
+);
+
+descripcion.addEventListener(
+"input",
+validarDescripcion
+);
+
+descripcion.addEventListener(
+"blur",
+validarDescripcion
+);
+
+tipo.addEventListener(
+"change",
+validarTipo
+);
 
 
 formulario.addEventListener(
@@ -37,18 +137,16 @@ function(e){
 
 e.preventDefault();
 
+let nombreValido=validarNombre();
+let descripcionValida=validarDescripcion();
+let tipoValido=validarTipo();
+
 
 if(
 
-nombre.value===""
-
-||
-
-descripcion.value===""
-
-||
-
-tipo.value===""
+!nombreValido ||
+!descripcionValida ||
+!tipoValido
 
 ){
 
@@ -56,7 +154,7 @@ mensaje.innerHTML=`
 
 <div class="alert alert-danger">
 
-Todos los campos son obligatorios
+Corrija los errores del formulario
 
 </div>
 
@@ -117,7 +215,6 @@ Eliminar
 
 `;
 
-
 lista.appendChild(
 tarjeta
 );
@@ -129,7 +226,6 @@ contador.textContent=total;
 
 
 const botonEliminar=
-
 tarjeta.querySelector(
 ".eliminar"
 );
@@ -153,6 +249,10 @@ contador.textContent=total;
 
 
 formulario.reset();
+
+nombre.classList.remove("is-valid");
+descripcion.classList.remove("is-valid");
+tipo.classList.remove("is-valid");
 
 }
 
