@@ -1,134 +1,213 @@
-const formulario=document.getElementById("formularioSolicitud");
+const formulario = document.getElementById("formularioSolicitud");
 
-const nombre=document.getElementById("nombre");
-const descripcion=document.getElementById("descripcion");
-const tipo=document.getElementById("tipo");
+const nombre = document.getElementById("nombre");
+const descripcion = document.getElementById("descripcion");
+const tipo = document.getElementById("tipo");
 
-const errorNombre=document.getElementById("errorNombre");
-const errorDescripcion=document.getElementById("errorDescripcion");
-const errorTipo=document.getElementById("errorTipo");
+const errorNombre = document.getElementById("errorNombre");
+const errorDescripcion = document.getElementById("errorDescripcion");
+const errorTipo = document.getElementById("errorTipo");
 
-const mensaje=document.getElementById("mensaje");
-const lista=document.getElementById("listaSolicitudes");
-const contador=document.getElementById("contador");
+const mensaje = document.getElementById("mensaje");
+const lista = document.getElementById("listaSolicitudes");
+const contador = document.getElementById("contador");
+const sinDatos = document.getElementById("sinDatos");
 
-let total=0;
+let solicitudes = [];
 
 
-function mostrarError(campo,mensajeError,contenedor){
 
-campo.classList.remove("is-valid");
-campo.classList.add("is-invalid");
+function mostrarError(campo, mensajeError, contenedor){
 
-contenedor.innerHTML=`
-<div class="text-danger">
-${mensajeError}
-</div>
-`;
+    campo.classList.remove("is-valid");
+    campo.classList.add("is-invalid");
 
-return false;
+    contenedor.innerHTML = `
+    <div class="text-danger">
+        ${mensajeError}
+    </div>
+    `;
+
+    return false;
+
+}
+
+
+
+function mostrarExito(campo, contenedor){
+
+    campo.classList.remove("is-invalid");
+    campo.classList.add("is-valid");
+
+    contenedor.innerHTML = "";
+
+    return true;
 
 }
 
-
-function mostrarExito(campo,contenedor){
-
-campo.classList.remove("is-invalid");
-campo.classList.add("is-valid");
-
-contenedor.innerHTML="";
-
-return true;
-
-}
 
 
 function validarNombre(){
 
-if(nombre.value.trim().length<3){
+    if(nombre.value.trim().length < 3){
 
-return mostrarError(
-nombre,
-"El nombre debe tener mínimo 3 caracteres",
-errorNombre
-);
+        return mostrarError(
+            nombre,
+            "El nombre debe tener mínimo 3 caracteres",
+            errorNombre
+        );
+
+    }
+
+    return mostrarExito(
+        nombre,
+        errorNombre
+    );
 
 }
 
-return mostrarExito(
-nombre,
-errorNombre
-);
-
-}
 
 
 function validarDescripcion(){
 
-if(descripcion.value.trim().length<10){
+    if(descripcion.value.trim().length < 10){
 
-return mostrarError(
-descripcion,
-"Debe escribir mínimo 10 caracteres",
-errorDescripcion
-);
+        return mostrarError(
+            descripcion,
+            "Debe escribir mínimo 10 caracteres",
+            errorDescripcion
+        );
+
+    }
+
+    return mostrarExito(
+        descripcion,
+        errorDescripcion
+    );
 
 }
 
-return mostrarExito(
-descripcion,
-errorDescripcion
-);
-
-}
 
 
 function validarTipo(){
 
-if(tipo.value===""){
+    if(tipo.value === ""){
 
-return mostrarError(
-tipo,
-"Seleccione una categoría",
-errorTipo
-);
+        return mostrarError(
+            tipo,
+            "Seleccione una categoría",
+            errorTipo
+        );
+
+    }
+
+    return mostrarExito(
+        tipo,
+        errorTipo
+    );
 
 }
 
-return mostrarExito(
-tipo,
-errorTipo
-);
+
+
+function renderizarSolicitudes(){
+
+    lista.innerHTML = "";
+
+    if(solicitudes.length === 0){
+
+        lista.innerHTML = `
+        <p id="sinDatos" class="text-center text-muted">
+            No existen solicitudes registradas.
+        </p>
+        `;
+
+        contador.textContent = 0;
+
+        return;
+
+    }
+
+    solicitudes.forEach(function(solicitud, indice){
+
+        lista.innerHTML += `
+
+        <div class="card p-3 mt-3">
+
+            <h5>
+
+                ${solicitud.nombre}
+
+            </h5>
+
+            <p>
+
+                ${solicitud.descripcion}
+
+            </p>
+
+            <span class="badge bg-primary">
+
+                ${solicitud.tipo}
+
+            </span>
+
+            <br><br>
+
+            <button
+                class="btn btn-danger"
+                onclick="eliminarSolicitud(${indice})">
+
+                Eliminar
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+    contador.textContent = solicitudes.length;
 
 }
 
 
+
+function eliminarSolicitud(indice){
+
+    solicitudes.splice(indice,1);
+
+    renderizarSolicitudes();
+
+}
+
+
+
 nombre.addEventListener(
-"input",
-validarNombre
+    "input",
+    validarNombre
 );
 
 nombre.addEventListener(
-"blur",
-validarNombre
+    "blur",
+    validarNombre
 );
 
 descripcion.addEventListener(
-"input",
-validarDescripcion
+    "input",
+    validarDescripcion
 );
 
 descripcion.addEventListener(
-"blur",
-validarDescripcion
+    "blur",
+    validarDescripcion
 );
 
 tipo.addEventListener(
-"change",
-validarTipo
+    "change",
+    validarTipo
 );
-
-
 formulario.addEventListener(
 
 "submit",
@@ -154,7 +233,7 @@ mensaje.innerHTML=`
 
 <div class="alert alert-danger">
 
-Corrija los errores del formulario
+Corrija los errores del formulario.
 
 </div>
 
@@ -165,95 +244,62 @@ return;
 }
 
 
+const nuevaSolicitud={
+
+nombre:nombre.value.trim(),
+
+descripcion:descripcion.value.trim(),
+
+tipo:tipo.value
+
+};
+
+
+solicitudes.push(
+nuevaSolicitud
+);
+
+
+renderizarSolicitudes();
+
+
 mensaje.innerHTML=`
 
 <div class="alert alert-success">
 
-Solicitud agregada correctamente
+Solicitud agregada correctamente.
 
 </div>
 
 `;
 
 
-const tarjeta=document.createElement(
-"div"
-);
-
-
-tarjeta.className=
-"card p-3 mt-3";
-
-
-tarjeta.innerHTML=`
-
-<h5>
-
-${nombre.value}
-
-</h5>
-
-<p>
-
-${descripcion.value}
-
-</p>
-
-<span class="badge bg-primary">
-
-${tipo.value}
-
-</span>
-
-<br><br>
-
-<button class="btn btn-danger eliminar">
-
-Eliminar
-
-</button>
-
-`;
-
-lista.appendChild(
-tarjeta
-);
-
-
-total++;
-
-contador.textContent=total;
-
-
-const botonEliminar=
-tarjeta.querySelector(
-".eliminar"
-);
-
-
-botonEliminar.addEventListener(
-
-"click",
-
-function(){
-
-tarjeta.remove();
-
-total--;
-
-contador.textContent=total;
-
-}
-
-);
-
-
 formulario.reset();
 
-nombre.classList.remove("is-valid");
-descripcion.classList.remove("is-valid");
-tipo.classList.remove("is-valid");
+
+nombre.classList.remove(
+"is-valid"
+);
+
+descripcion.classList.remove(
+"is-valid"
+);
+
+tipo.classList.remove(
+"is-valid"
+);
+
+
+errorNombre.innerHTML="";
+errorDescripcion.innerHTML="";
+errorTipo.innerHTML="";
+
+
+nombre.focus();
 
 }
 
 );
+
+
+renderizarSolicitudes();

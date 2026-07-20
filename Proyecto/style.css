@@ -90,6 +90,64 @@ margin-top:5px;
 
 }
 
+/* ========================= */
+/* NUEVOS ESTILOS */
+/* ========================= */
+
+#listaSolicitudes{
+
+min-height:120px;
+
+}
+
+#sinDatos{
+
+padding:25px;
+
+background:white;
+
+border-radius:10px;
+
+border:2px dashed #d4a373;
+
+font-style:italic;
+
+}
+
+.badge{
+
+font-size:14px;
+
+padding:8px 12px;
+
+}
+
+.card h5{
+
+color:#8b5e34;
+
+font-weight:bold;
+
+}
+
+.card p{
+
+text-align:justify;
+
+}
+
+.btn-danger{
+
+margin-top:10px;
+
+}
+
+.alert{
+
+margin-top:15px;
+
+}
+
 @media(max-width:768px){
 
 header h1{
@@ -101,6 +159,24 @@ font-size:28px;
 .inicio{
 
 text-align:center;
+
+}
+
+aside{
+
+margin:10px;
+
+}
+
+#listaSolicitudes{
+
+margin-top:20px;
+
+}
+
+.card{
+
+margin:10px 0;
 
 }
 
