@@ -9,6 +9,9 @@ const errorDescripcion = document.getElementById("errorDescripcion");
 const errorTipo = document.getElementById("errorTipo");
 
 const mensaje = document.getElementById("mensaje");
+
+const spinner = document.getElementById("spinnerCarga");
+
 const lista = document.getElementById("listaSolicitudes");
 const contador = document.getElementById("contador");
 const sinDatos = document.getElementById("sinDatos");
@@ -244,6 +247,14 @@ return;
 }
 
 
+spinner.style.display = "block";
+
+mensaje.innerHTML = "";
+
+setTimeout(function(){
+
+spinner.style.display = "none";
+
 const nuevaSolicitud={
 
 nombre:nombre.value.trim(),
@@ -273,27 +284,20 @@ Solicitud agregada correctamente.
 
 `;
 
+},1500);
+
 
 formulario.reset();
 
+nombre.classList.remove("is-valid");
 
-nombre.classList.remove(
-"is-valid"
-);
+descripcion.classList.remove("is-valid");
 
-descripcion.classList.remove(
-"is-valid"
-);
-
-tipo.classList.remove(
-"is-valid"
-);
-
+tipo.classList.remove("is-valid");
 
 errorNombre.innerHTML="";
 errorDescripcion.innerHTML="";
 errorTipo.innerHTML="";
-
 
 nombre.focus();
 

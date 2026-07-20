@@ -111,8 +111,13 @@ Bienvenidos a Arte en Cada Trazo, un emprendimiento dedicado a transformar recue
 Ver trabajos
 </button>
 
-<button class="btn btn-dark m-2">
-Contáctanos
+<button
+class="btn btn-dark m-2"
+data-bs-toggle="modal"
+data-bs-target="#modalInformacion">
+
+Más información
+
 </button>
 
 </article>
@@ -230,7 +235,7 @@ Contacto
 
 <div class="mb-3">
 
-<label>
+<label class="form-label">
 Nombre
 </label>
 
@@ -242,7 +247,7 @@ class="form-control">
 
 <div class="mb-3">
 
-<label>
+<label class="form-label">
 Correo
 </label>
 
@@ -276,7 +281,7 @@ Registrar Solicitud
 
 <div class="mb-3">
 
-<label>
+<label class="form-label">
 Nombre cliente
 </label>
 
@@ -291,7 +296,7 @@ class="form-control">
 
 <div class="mb-3">
 
-<label>
+<label class="form-label">
 Descripción
 </label>
 
@@ -305,7 +310,7 @@ class="form-control"></textarea>
 
 <div class="mb-3">
 
-<label>
+<label class="form-label">
 Tipo
 </label>
 
@@ -348,6 +353,25 @@ Agregar solicitud
 <br>
 
 <div id="mensaje"></div>
+
+<div
+id="spinnerCarga"
+class="text-center mt-3"
+style="display:none;">
+
+<div
+class="spinner-border text-success"
+role="status">
+
+<span class="visually-hidden">
+
+Cargando...
+
+</span>
+
+</div>
+
+</div>
 
 </div>
 
@@ -405,6 +429,74 @@ Información adicional
 </p>
 
 </aside>
+
+<!-- ========================= -->
+<!-- MODAL BOOTSTRAP -->
+<!-- ========================= -->
+
+<div
+class="modal fade"
+id="modalInformacion"
+tabindex="-1"
+aria-labelledby="modalInformacionLabel"
+aria-hidden="true">
+
+<div class="modal-dialog">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<h5
+class="modal-title"
+id="modalInformacionLabel">
+
+Arte en Cada Trazo
+
+</h5>
+
+<button
+type="button"
+class="btn-close"
+data-bs-dismiss="modal"
+aria-label="Cerrar">
+
+</button>
+
+</div>
+
+<div class="modal-body">
+
+<p>
+
+Gracias por visitar <strong>Arte en Cada Trazo</strong>.
+
+Aquí podrás solicitar retratos personalizados,
+dibujos a lápiz e ilustraciones digitales realizadas
+con dedicación y creatividad.
+
+</p>
+
+</div>
+
+<div class="modal-footer">
+
+<button
+type="button"
+class="btn btn-secondary"
+data-bs-dismiss="modal">
+
+Cerrar
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 <!-- ========================= -->
 <!-- FOOTER BASE.HTML -->
