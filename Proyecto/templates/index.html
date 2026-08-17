@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - Arte en Cada Trazo{% endblock %}
+
+{% block content %}
+
+<section id="inicio">
+
+<article class="inicio text-center p-3 m-3">
+
+<h2>Bienvenidos</h2>
+
+<p>
+Bienvenidos a Arte en Cada Trazo, un emprendimiento dedicado a transformar recuerdos y emociones en obras artísticas únicas.
+</p>
+
+<a href="{{ url_for('servicios') }}" class="btn btn-warning m-2">
+Ver trabajos
+</a>
+
+<button
+class="btn btn-dark m-2"
+data-bs-toggle="modal"
+data-bs-target="#modalInformacion">
+
+Más información
+
+</button>
+
+</article>
+
+</section>
+
+<section id="quienes">
+
+<h2 class="text-center m-4">
+Quiénes Somos
+</h2>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<p>
+Arte en Cada Trazo es un emprendimiento enfocado en la creación de retratos, dibujos y pinturas personalizadas.
+</p>
+
+</div>
+
+<div class="col-md-6">
+
+<img
+src="{{ url_for('static', filename='img/portafolio.jpg') }}"
+class="img-fluid imagen"
+alt="Portafolio">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- MODAL BOOTSTRAP -->
+<!-- ========================= -->
+
+<div
+class="modal fade"
+id="modalInformacion"
+tabindex="-1"
+aria-labelledby="modalInformacionLabel"
+aria-hidden="true">
+
+<div class="modal-dialog">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<h5
+class="modal-title"
+id="modalInformacionLabel">
+
+Arte en Cada Trazo
+
+</h5>
+
+<button
+type="button"
+class="btn-close"
+data-bs-dismiss="modal"
+aria-label="Cerrar">
+
+</button>
+
+</div>
+
+<div class="modal-body">
+
+<p>
+
+Gracias por visitar <strong>Arte en Cada Trazo</strong>.
+
+Aquí podrás solicitar retratos personalizados,
+dibujos a lápiz e ilustraciones digitales realizadas
+con dedicación y creatividad.
+
+</p>
+
+</div>
+
+<div class="modal-footer">
+
+<button
+type="button"
+class="btn btn-secondary"
+data-bs-dismiss="modal">
+
+Cerrar
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

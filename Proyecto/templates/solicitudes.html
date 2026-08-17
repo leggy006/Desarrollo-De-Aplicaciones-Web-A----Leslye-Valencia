@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}Solicitudes - Arte en Cada Trazo{% endblock %}
+
+{% block content %}
+
+<section id="solicitudes">
+
+<h2 class="text-center m-4">
+Registrar Solicitud
+</h2>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<form id="formularioSolicitud">
+
+<div class="mb-3">
+
+<label class="form-label">
+Nombre cliente
+</label>
+
+<input
+type="text"
+id="nombre"
+class="form-control">
+
+<div id="errorNombre"></div>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+Descripción
+</label>
+
+<textarea
+id="descripcion"
+class="form-control"></textarea>
+
+<div id="errorDescripcion"></div>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+Tipo
+</label>
+
+<select
+id="tipo"
+class="form-control">
+
+<option value="">
+Seleccione
+</option>
+
+<option>
+Retrato personalizado
+</option>
+
+<option>
+Dibujo a lápiz
+</option>
+
+<option>
+Ilustración digital
+</option>
+
+</select>
+
+<div id="errorTipo"></div>
+
+</div>
+
+<button
+type="submit"
+class="btn btn-success">
+
+Agregar solicitud
+
+</button>
+
+</form>
+
+<br>
+
+<div id="mensaje"></div>
+
+<div
+id="spinnerCarga"
+class="text-center mt-3"
+style="display:none;">
+
+<div
+class="spinner-border text-success"
+role="status">
+
+<span class="visually-hidden">
+
+Cargando...
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<h4>
+Solicitudes registradas
+</h4>
+
+<p>
+
+Total:
+
+<span id="contador">
+0
+</span>
+
+</p>
+
+<!-- Esta sección será llenada dinámicamente desde JavaScript -->
+
+<div
+id="listaSolicitudes">
+
+<p
+id="sinDatos"
+class="text-center text-muted">
+
+No existen solicitudes registradas.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

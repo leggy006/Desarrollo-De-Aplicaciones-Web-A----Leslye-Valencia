@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Servicios - Arte en Cada Trazo{% endblock %}
+
+{% block content %}
+
+<section id="servicios">
+
+<h2 class="text-center m-4">
+Servicios
+</h2>
+
+<div class="row">
+
+{% for servicio in servicios %}
+
+<div class="col-md-4">
+
+<div class="card p-3 m-3">
+
+<div class="card-body">
+
+<h5>
+{{ servicio.titulo }}
+</h5>
+
+<p>
+{{ servicio.descripcion }}
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</section>
+
+{% endblock %}
