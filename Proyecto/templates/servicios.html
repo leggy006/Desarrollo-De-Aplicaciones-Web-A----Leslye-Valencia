@@ -10,6 +10,10 @@
 Servicios
 </h2>
 
+<p class="text-center text-muted mb-4">
+Haz clic en un servicio para ver ejemplos de trabajos realizados.
+</p>
+
 <div class="row">
 
 {% for servicio in servicios %}
@@ -20,13 +24,55 @@ Servicios
 
 <div class="card-body">
 
+<button
+class="btn btn-link text-decoration-none p-0 text-start w-100"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#galeria-{{ servicio.slug }}"
+aria-expanded="false"
+aria-controls="galeria-{{ servicio.slug }}">
+
 <h5>
 {{ servicio.titulo }}
 </h5>
 
+</button>
+
 <p>
 {{ servicio.descripcion }}
 </p>
+
+<div class="collapse" id="galeria-{{ servicio.slug }}">
+
+<div class="row g-2 mb-3">
+
+{% for imagen in servicio.imagenes %}
+
+<div class="col-4">
+
+<img
+src="{{ url_for('static', filename='img/' ~ imagen) }}"
+class="img-fluid rounded galeria-img"
+style="cursor: pointer; aspect-ratio: 1; object-fit: cover;"
+alt="{{ servicio.titulo }}"
+data-bs-toggle="modal"
+data-bs-target="#modalGaleria">
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<a
+href="{{ url_for('solicitudes', tipo=servicio.tipo_solicitud) }}"
+class="btn btn-warning w-100">
+
+Encargar {{ servicio.titulo | lower }}
+
+</a>
+
+</div>
 
 </div>
 
@@ -39,5 +85,44 @@ Servicios
 </div>
 
 </section>
+
+<!-- ========================= -->
+<!-- MODAL PARA VER IMAGEN AMPLIADA -->
+<!-- ========================= -->
+
+<div
+class="modal fade"
+id="modalGaleria"
+tabindex="-1"
+aria-hidden="true">
+
+<div class="modal-dialog modal-dialog-centered modal-lg">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<h5 class="modal-title">Vista ampliada</h5>
+
+<button
+type="button"
+class="btn-close"
+data-bs-dismiss="modal"
+aria-label="Cerrar">
+</button>
+
+</div>
+
+<div class="modal-body text-center">
+
+<img id="modalGaleriaImg" src="" class="img-fluid rounded" alt="Vista ampliada">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 {% endblock %}

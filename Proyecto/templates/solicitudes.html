@@ -14,76 +14,50 @@ Registrar Solicitud
 
 <div class="col-md-6">
 
-<form id="formularioSolicitud">
+<form id="formularioSolicitud" method="POST" novalidate>
+
+{{ form.hidden_tag() }}
 
 <div class="mb-3">
 
-<label class="form-label">
-Nombre cliente
-</label>
+{{ form.nombre.label(class="form-label") }}
+{{ form.nombre(class="form-control", id="nombre") }}
 
-<input
-type="text"
-id="nombre"
-class="form-control">
-
-<div id="errorNombre"></div>
+<div id="errorNombre">
+{% for error in form.nombre.errors %}
+<div class="text-danger">{{ error }}</div>
+{% endfor %}
+</div>
 
 </div>
 
 <div class="mb-3">
 
-<label class="form-label">
-Descripción
-</label>
+{{ form.descripcion.label(class="form-label") }}
+{{ form.descripcion(class="form-control", id="descripcion") }}
 
-<textarea
-id="descripcion"
-class="form-control"></textarea>
-
-<div id="errorDescripcion"></div>
+<div id="errorDescripcion">
+{% for error in form.descripcion.errors %}
+<div class="text-danger">{{ error }}</div>
+{% endfor %}
+</div>
 
 </div>
 
 <div class="mb-3">
 
-<label class="form-label">
-Tipo
-</label>
+{{ form.tipo.label(class="form-label") }}
+{{ form.tipo(class="form-control", id="tipo") }}
 
-<select
-id="tipo"
-class="form-control">
-
-<option value="">
-Seleccione
-</option>
-
-<option>
-Retrato personalizado
-</option>
-
-<option>
-Dibujo a lápiz
-</option>
-
-<option>
-Ilustración digital
-</option>
-
-</select>
-
-<div id="errorTipo"></div>
+<div id="errorTipo">
+{% for error in form.tipo.errors %}
+<div class="text-danger">{{ error }}</div>
+{% endfor %}
+</div>
 
 </div>
 
-<button
-type="submit"
-class="btn btn-success">
-
-Agregar solicitud
-
-</button>
+{{ form.submit(class="btn btn-success") }}
 
 </form>
 
@@ -101,9 +75,7 @@ class="spinner-border text-success"
 role="status">
 
 <span class="visually-hidden">
-
 Cargando...
-
 </span>
 
 </div>
@@ -119,27 +91,45 @@ Solicitudes registradas
 </h4>
 
 <p>
-
 Total:
-
-<span id="contador">
-0
-</span>
-
+<span id="contador">{{ solicitudes|length }}</span>
 </p>
 
-<!-- Esta sección será llenada dinámicamente desde JavaScript -->
+<!-- Esta sección ahora se llena con datos reales recuperados de SQLite -->
 
-<div
-id="listaSolicitudes">
+<div id="listaSolicitudes">
 
-<p
-id="sinDatos"
-class="text-center text-muted">
+{% if solicitudes|length == 0 %}
 
+<p id="sinDatos" class="text-center text-muted">
 No existen solicitudes registradas.
-
 </p>
+
+{% else %}
+
+<table class="table table-bordered table-hover align-middle">
+
+<thead class="table-dark">
+<tr>
+<th>Nombre</th>
+<th>Descripción</th>
+<th>Tipo</th>
+</tr>
+</thead>
+
+<tbody>
+{% for solicitud in solicitudes %}
+<tr>
+<td>{{ solicitud.nombre }}</td>
+<td>{{ solicitud.descripcion }}</td>
+<td><span class="badge bg-primary">{{ solicitud.tipo }}</span></td>
+</tr>
+{% endfor %}
+</tbody>
+
+</table>
+
+{% endif %}
 
 </div>
 
