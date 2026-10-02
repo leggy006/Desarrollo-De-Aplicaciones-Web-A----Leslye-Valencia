@@ -1,0 +1,61 @@
+<form id="formularioSolicitud" method="POST" novalidate>
+
+{{ form.hidden_tag() }}
+
+<div class="mb-3">
+
+{{ form.cliente.label(class="form-label") }}
+{{ form.cliente(class="form-select", id="cliente") }}
+
+<div id="errorCliente">
+{% for error in form.cliente.errors %}
+<div class="text-danger">{{ error }}</div>
+{% endfor %}
+{% if not hay_clientes %}
+<div class="text-warning small">
+Aún no hay clientes. <a href="{{ url_for('clientes') }}">Registra un cliente primero</a>.
+</div>
+{% endif %}
+</div>
+
+</div>
+
+<div class="mb-3">
+
+{{ form.descripcion.label(class="form-label") }}
+{{ form.descripcion(class="form-control", id="descripcion") }}
+
+<div id="errorDescripcion">
+{% for error in form.descripcion.errors %}
+<div class="text-danger">{{ error }}</div>
+{% endfor %}
+</div>
+
+</div>
+
+<div class="mb-3">
+
+{{ form.tipo.label(class="form-label") }}
+{{ form.tipo(class="form-select", id="tipo") }}
+
+<div id="errorTipo">
+{% for error in form.tipo.errors %}
+<div class="text-danger">{{ error }}</div>
+{% endfor %}
+</div>
+
+</div>
+
+{{ form.submit(class="btn btn-warning") }}
+
+</form>
+
+<br>
+
+<div id="mensaje"></div>
+
+<div id="spinnerCarga" class="text-center mt-3" style="display:none;">
+<div class="spinner-border text-warning" role="status">
+<span class="visually-hidden">Cargando...</span>
+</div>
+</div>

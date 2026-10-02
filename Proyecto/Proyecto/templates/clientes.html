@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Clientes - Leggy{% endblock %}
+
+{% block content %}
+
+<section id="clientes">
+
+<h2 class="text-center m-4">
+Registrar Cliente
+</h2>
+
+<div class="row">
+
+<div class="col-md-5">
+
+{% include "components/_form_cliente.html" %}
+
+</div>
+
+<div class="col-md-7">
+
+<h4>
+Clientes registrados
+</h4>
+
+<form method="GET" class="input-group mb-3">
+<input type="text" name="q" value="{{ busqueda }}" class="form-control" placeholder="Buscar por nombre o correo">
+<button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
+{% if busqueda %}
+<a class="btn btn-outline-secondary" href="{{ url_for('clientes') }}">Limpiar</a>
+{% endif %}
+</form>
+
+<p>
+Total: <span>{{ clientes|length }}</span>
+</p>
+
+{% if clientes|length == 0 %}
+
+<p id="sinDatos" class="text-center text-muted">
+No existen clientes registrados.
+</p>
+
+{% else %}
+
+<div class="table-responsive">
+
+<table class="table table-bordered table-hover align-middle">
+
+<thead class="table-dark">
+<tr>
+<th>#</th>
+<th>Nombre</th>
+<th>Teléfono</th>
+<th>Correo</th>
+<th>Solicitudes</th>
+<th>Acciones</th>
+</tr>
+</thead>
+
+<tbody>
+{% for c in clientes %}
+<tr>
+<td>{{ c.id_cliente }}</td>
+<td>{{ c.nombre }}</td>
+<td>{{ c.telefono or "-" }}</td>
+<td>{{ c.correo or "-" }}</td>
+<td><span class="badge bg-warning text-dark">{{ c.total_solicitudes }}</span></td>
+<td class="text-nowrap">
+<a class="btn btn-sm btn-outline-info" href="{{ url_for('detalle_cliente', id_cliente=c.id_cliente) }}" title="Ver solicitudes">
+<i class="bi bi-eye"></i>
+</a>
+<a class="btn btn-sm btn-outline-warning" href="{{ url_for('editar_cliente', id_cliente=c.id_cliente) }}" title="Modificar">
+<i class="bi bi-pencil"></i>
+</a>
+<button
+type="button"
+class="btn btn-sm btn-outline-danger"
+data-bs-toggle="modal"
+data-bs-target="#modalEliminar"
+data-url="{{ url_for('eliminar_cliente_ruta', id_cliente=c.id_cliente) }}"
+data-nombre="al cliente {{ c.nombre }}"
+title="Eliminar">
+<i class="bi bi-trash"></i>
+</button>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+
+</table>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</section>
+
+{% include "components/_modal_eliminar.html" %}
+
+{% endblock %}

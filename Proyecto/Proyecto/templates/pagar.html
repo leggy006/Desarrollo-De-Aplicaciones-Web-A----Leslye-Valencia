@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Pagar por transferencia - Leggy{% endblock %}
+
+{% block content %}
+
+<section id="pagar">
+
+<h2 class="text-center m-4">
+Pago por transferencia
+</h2>
+
+<div class="row">
+
+<div class="col-md-5">
+
+<div class="card sin-hover p-3 mb-3">
+<div class="card-body">
+<h5><i class="bi bi-bank"></i> Datos para transferir</h5>
+<ul class="list-unstyled mb-3">
+<li><strong>Banco:</strong> {{ negocio.banco }}</li>
+<li>
+<strong>Cuenta:</strong>
+<span id="numeroCuenta">{{ negocio.cuenta }}</span>
+<button type="button" class="btn btn-sm btn-outline-warning ms-1" data-copiar="#numeroCuenta">
+<i class="bi bi-clipboard"></i> Copiar
+</button>
+</li>
+<li><strong>Titular:</strong> {{ negocio.titular }}</li>
+</ul>
+<ol class="small mb-0">
+<li>Realiza la transferencia por el valor del servicio.</li>
+<li>Sube aquí la foto del comprobante y el código.</li>
+<li>Al enviar, se abrirá WhatsApp para avisarme.</li>
+<li>Recibirás tu factura y la verificaré lo antes posible.</li>
+</ol>
+</div>
+</div>
+
+</div>
+
+<div class="col-md-7">
+
+<form method="POST" enctype="multipart/form-data" novalidate>
+
+{{ form.hidden_tag() }}
+
+<div class="mb-3">
+{{ form.servicio.label(class="form-label") }}
+{{ form.servicio(class="form-select", id="servicio", data_precios=precios|tojson) }}
+{% for error in form.servicio.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
+</div>
+
+<div class="alert alert-warning">
+Valor a transferir: <strong id="montoPagar">$0.00</strong>
+</div>
+
+<div class="mb-3">
+{{ form.codigo.label(class="form-label") }}
+{{ form.codigo(class="form-control", placeholder="Número de documento / comprobante") }}
+{% for error in form.codigo.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
+</div>
+
+<div class="mb-3">
+{{ form.comprobante.label(class="form-label") }}
+{{ form.comprobante(class="form-control", accept="image/png,image/jpeg,image/webp") }}
+<div class="form-text">JPG, PNG o WEBP, máximo 5 MB.</div>
+{% for error in form.comprobante.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
+</div>
+
+{{ form.submit(class="btn btn-warning w-100") }}
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Solicitudes - Leggy{% endblock %}
+
+{% block content %}
+
+<section id="solicitudes">
+
+<h2 class="text-center m-4">
+Registrar Solicitud
+</h2>
+
+<div class="row">
+
+<div class="col-md-6">
+
+{% include "components/_form_solicitud.html" %}
+
+</div>
+
+<div class="col-md-6">
+
+<h4>
+Solicitudes registradas
+</h4>
+
+<form method="GET" class="input-group mb-3">
+<input type="text" name="q" value="{{ busqueda }}" class="form-control" placeholder="Buscar por cliente o descripción">
+<button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
+{% if busqueda %}
+<a class="btn btn-outline-secondary" href="{{ url_for('solicitudes') }}">Limpiar</a>
+{% endif %}
+</form>
+
+<p>
+Total:
+<span id="contador">{{ solicitudes|length }}</span>
+</p>
+
+<div id="listaSolicitudes">
+
+{% if solicitudes|length == 0 %}
+
+<p id="sinDatos" class="text-center text-muted">
+No existen solicitudes registradas.
+</p>
+
+{% else %}
+
+<div class="table-responsive">
+
+<table class="table table-bordered table-hover align-middle">
+
+<thead class="table-dark">
+<tr>
+<th>#</th>
+<th>Cliente</th>
+<th>Descripción</th>
+<th>Tipo</th>
+<th>Acciones</th>
+</tr>
+</thead>
+
+<tbody>
+{% for solicitud in solicitudes %}
+<tr>
+<td>{{ solicitud.id_solicitud }}</td>
+<td>{{ solicitud.cliente }}</td>
+<td>{{ solicitud.descripcion }}</td>
+<td><span class="badge bg-warning text-dark">{{ solicitud.tipo }}</span></td>
+<td class="text-nowrap">
+<a class="btn btn-sm btn-outline-warning" href="{{ url_for('editar_solicitud', id_solicitud=solicitud.id_solicitud) }}" title="Modificar">
+<i class="bi bi-pencil"></i>
+</a>
+<button
+type="button"
+class="btn btn-sm btn-outline-danger"
+data-bs-toggle="modal"
+data-bs-target="#modalEliminar"
+data-url="{{ url_for('eliminar', id_solicitud=solicitud.id_solicitud) }}"
+data-nombre="la solicitud #{{ solicitud.id_solicitud }} de {{ solicitud.cliente }}"
+title="Eliminar">
+<i class="bi bi-trash"></i>
+</button>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+
+</table>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+{% include "components/_modal_eliminar.html" %}
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}{{ cliente.nombre }} - Leggy{% endblock %}
+
+{% block content %}
+
+<section id="detalle-cliente">
+
+<h2 class="text-center m-4">
+{{ cliente.nombre }}
+</h2>
+
+<p class="text-center text-muted">
+Teléfono: {{ cliente.telefono or "-" }} | Correo: {{ cliente.correo or "-" }}
+</p>
+
+<h4>Solicitudes de este cliente</h4>
+
+{% if solicitudes|length == 0 %}
+
+<p id="sinDatos" class="text-center text-muted">
+Este cliente aún no tiene solicitudes.
+</p>
+
+{% else %}
+
+<div class="table-responsive">
+<table class="table table-bordered table-hover align-middle">
+<thead class="table-dark">
+<tr><th>#</th><th>Tipo</th><th>Descripción</th></tr>
+</thead>
+<tbody>
+{% for s in solicitudes %}
+<tr>
+<td>{{ s.id_solicitud }}</td>
+<td><span class="badge bg-warning text-dark">{{ s.tipo }}</span></td>
+<td>{{ s.descripcion }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+
+{% endif %}
+
+<a href="{{ url_for('clientes') }}" class="btn btn-outline-secondary">Volver a clientes</a>
+
+</section>
+
+{% endblock %}

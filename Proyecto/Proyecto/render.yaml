@@ -1,0 +1,27 @@
+# Blueprint de Render: crea el servicio web y la base de datos PostgreSQL.
+services:
+  - type: web
+    name: leggy
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: INIT_DB
+        value: "1"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_USUARIO
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: leggy-db
+          property: connectionString
+
+databases:
+  - name: leggy-db
+    plan: free

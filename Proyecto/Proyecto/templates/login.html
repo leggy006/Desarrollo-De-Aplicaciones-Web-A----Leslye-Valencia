@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Iniciar sesión - Leggy{% endblock %}
+
+{% block content %}
+
+<section id="login">
+
+<h2 class="text-center m-4">
+Iniciar sesión
+</h2>
+
+<div class="row justify-content-center">
+
+<div class="col-md-5">
+
+<form method="POST" novalidate>
+
+{{ form.hidden_tag() }}
+
+<div class="mb-3">
+{{ form.usuario.label(class="form-label") }}
+{{ form.usuario(class="form-control", autofocus=true) }}
+{% for error in form.usuario.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
+</div>
+
+<div class="mb-3">
+{{ form.password.label(class="form-label") }}
+{{ form.password(class="form-control") }}
+{% for error in form.password.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
+</div>
+
+{{ form.submit(class="btn btn-warning w-100") }}
+
+</form>
+
+<p class="text-center mt-3">
+¿No tienes cuenta?
+<a href="{{ url_for('registro') }}">Regístrate</a>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

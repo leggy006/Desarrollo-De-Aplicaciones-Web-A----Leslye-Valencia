@@ -1,0 +1,214 @@
+/* =========================
+   LEGGY - TEMA OSCURO
+   (Bootstrap en modo oscuro: data-bs-theme="dark")
+   ========================= */
+
+:root{
+--fondo:#0d0d0f;
+--superficie:#17171b;
+--borde:#2a2a31;
+--acento:#d4a373;
+--acento-suave:#faedcd;
+}
+
+body{
+font-family:Arial,sans-serif;
+background-color:var(--fondo);
+color:#e6e6ea;
+}
+
+a{
+color:var(--acento);
+}
+
+a:hover{
+color:var(--acento-suave);
+}
+
+header{
+background:linear-gradient(135deg,#1c1c22,#0d0d0f);
+border-bottom:2px solid var(--acento);
+padding:30px;
+text-align:center;
+color:var(--acento-suave);
+}
+
+header h1{
+color:var(--acento);
+letter-spacing:2px;
+font-weight:bold;
+}
+
+.navbar{
+background-color:#101013;
+border-bottom:1px solid var(--borde);
+}
+
+.navbar-brand{
+color:var(--acento) !important;
+font-weight:bold;
+letter-spacing:1px;
+}
+
+.usuario-actual{
+color:var(--acento-suave) !important;
+}
+
+.inicio{
+background:var(--superficie);
+padding:30px;
+border-radius:15px;
+margin-top:20px;
+border:1px solid var(--borde);
+box-shadow:0px 5px 20px rgba(0,0,0,0.6);
+}
+
+.card{
+background-color:var(--superficie);
+border:1px solid var(--borde);
+transition:0.4s;
+}
+
+.card:hover{
+transform:scale(1.05);
+border-color:var(--acento);
+}
+
+.imagen{
+border-radius:15px;
+box-shadow:0px 4px 14px rgba(0,0,0,0.7);
+}
+
+aside{
+background-color:var(--superficie);
+border-left:4px solid var(--acento);
+padding:20px;
+margin:20px;
+border-radius:15px;
+}
+
+footer{
+background-color:#101013;
+border-top:1px solid var(--borde);
+padding:15px;
+text-align:center;
+color:#b9b9c2;
+margin-top:30px;
+}
+
+#listaSolicitudes .card{
+margin-bottom:15px;
+}
+
+.text-danger{
+font-size:14px;
+margin-top:5px;
+}
+
+#listaSolicitudes{
+min-height:120px;
+}
+
+#sinDatos{
+padding:25px;
+background:var(--superficie);
+border-radius:10px;
+border:2px dashed var(--acento);
+font-style:italic;
+}
+
+.badge{
+font-size:14px;
+padding:8px 12px;
+}
+
+.card h5{
+color:var(--acento);
+font-weight:bold;
+}
+
+.card p{
+text-align:justify;
+}
+
+.btn-danger{
+margin-top:10px;
+}
+
+.alert{
+margin-top:15px;
+}
+
+/* Botón de Instagram */
+.btn-instagram{
+background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);
+border:none;
+color:#fff;
+}
+
+.btn-instagram:hover{
+color:#fff;
+filter:brightness(1.15);
+}
+
+@media(max-width:768px){
+
+header h1{
+font-size:28px;
+}
+
+.inicio{
+text-align:center;
+}
+
+aside{
+margin:10px;
+}
+
+#listaSolicitudes{
+margin-top:20px;
+}
+
+.card{
+margin:10px 0;
+}
+
+}
+
+/* MODAL BOOTSTRAP */
+
+.modal-content{
+background-color:var(--superficie);
+border:1px solid var(--borde);
+}
+
+.modal-header{
+background:#1f1f25;
+color:var(--acento);
+border-bottom:1px solid var(--acento);
+}
+
+.modal-footer{
+background:#131317;
+}
+
+/* SPINNER */
+
+#spinnerCarga{
+margin-top:20px;
+}
+
+.spinner-border{
+width:3rem;
+height:3rem;
+}
+
+
+/* Tarjetas de formularios/pasos: sin efecto de zoom */
+.card.sin-hover:hover{
+transform:none;
+}
+
+.card.sin-hover p{
+text-align:left;
+}

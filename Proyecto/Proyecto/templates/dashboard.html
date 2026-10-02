@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Panel - Leggy{% endblock %}
+
+{% block content %}
+
+<section id="dashboard">
+
+<h2 class="text-center m-4">
+Hola, {{ current_user.usuario }}
+</h2>
+
+<p class="text-center text-muted">
+Solicitudes registradas: <strong>{{ total }}</strong> | Clientes: <strong>{{ clientes }}</strong>
+</p>
+
+<div class="row justify-content-center">
+
+{% for fila in resumen %}
+<div class="col-md-4">
+<div class="card p-3 m-3 text-center">
+<h5>{{ fila.tipo }}</h5>
+<p class="display-6 mb-0 text-center">{{ fila.total }}</p>
+</div>
+</div>
+{% endfor %}
+
+</div>
+
+<p class="text-center">
+Pagos por verificar:
+<a href="{{ url_for('admin_pagos') }}"><span class="badge bg-warning text-dark">{{ pendientes }}</span></a>
+</p>
+
+<div class="text-center mt-3">
+<a href="{{ url_for('admin_pagos') }}" class="btn btn-warning">Ver pagos</a>
+<a href="{{ url_for('clientes') }}" class="btn btn-warning">Gestionar clientes</a>
+<a href="{{ url_for('solicitudes') }}" class="btn btn-warning">Gestionar solicitudes</a>
+<a href="{{ url_for('logout') }}" class="btn btn-outline-secondary">Cerrar sesión</a>
+</div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Pago enviado - Leggy{% endblock %}
+
+{% block content %}
+
+<section id="pago-enviado">
+
+<h2 class="text-center m-4">
+<i class="bi bi-check-circle text-success"></i> Pago registrado
+</h2>
+
+<div class="row justify-content-center">
+<div class="col-md-7">
+
+<div class="card sin-hover p-3 mb-3">
+<div class="card-body">
+<ul class="list-unstyled mb-0">
+<li><strong>Factura:</strong> {{ pago.id_pago|numero_factura }}</li>
+<li><strong>Servicio:</strong> {{ pago.servicio }}</li>
+<li><strong>Monto:</strong> ${{ "%.2f"|format(pago.monto) }}</li>
+<li><strong>Código de transferencia:</strong> {{ pago.codigo_transferencia }}</li>
+<li><strong>Estado:</strong> <span class="badge bg-{{ pago.estado|clase_estado }}">{{ pago.estado|capitalize }}</span></li>
+</ul>
+</div>
+</div>
+
+<div class="alert alert-info">
+<strong>Último paso:</strong> toca el botón verde para abrir WhatsApp, adjunta la foto de tu
+comprobante y envíala. Así puedo verificar tu pago más rápido.
+</div>
+
+<div class="d-grid gap-2">
+<a class="btn btn-success" href="{{ wa_link(mensaje_wa) }}" target="_blank" rel="noopener noreferrer">
+<i class="bi bi-whatsapp"></i> Enviar comprobante por WhatsApp
+</a>
+<a class="btn btn-warning" href="{{ url_for('factura', id_pago=pago.id_pago) }}" target="_blank" rel="noopener noreferrer">
+<i class="bi bi-file-earmark-text"></i> Ver / descargar factura
+</a>
+<a class="btn btn-outline-secondary" href="{{ url_for('mis_pagos') }}">Ir a mis pagos</a>
+</div>
+
+</div>
+</div>
+
+</section>
+
+{% endblock %}

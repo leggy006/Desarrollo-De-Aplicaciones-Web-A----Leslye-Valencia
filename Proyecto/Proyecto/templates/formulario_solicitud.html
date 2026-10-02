@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Modificar solicitud - Leggy{% endblock %}
+
+{% block content %}
+
+<section id="editar">
+
+<h2 class="text-center m-4">
+Modificar Solicitud #{{ solicitud.id_solicitud }}
+</h2>
+
+<div class="row justify-content-center">
+
+<div class="col-md-6">
+
+{% include "components/_form_solicitud.html" %}
+
+<a href="{{ url_for('solicitudes') }}" class="btn btn-outline-secondary">Cancelar</a>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

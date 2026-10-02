@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Pagos - Leggy{% endblock %}
+
+{% block content %}
+
+<section id="admin-pagos">
+
+<h2 class="text-center m-4">
+Pagos recibidos
+</h2>
+
+{% if pagos|length == 0 %}
+
+<p id="sinDatos" class="text-center text-muted">
+Aún no hay pagos registrados.
+</p>
+
+{% else %}
+
+<div class="table-responsive">
+<table class="table table-bordered table-hover align-middle">
+<thead class="table-dark">
+<tr>
+<th>Factura</th><th>Fecha</th><th>Usuario</th><th>Servicio</th>
+<th>Monto</th><th>Código</th><th>Estado</th><th>Acciones</th>
+</tr>
+</thead>
+<tbody>
+{% for p in pagos %}
+<tr>
+<td>{{ p.id_pago|numero_factura }}</td>
+<td>{{ p.fecha.strftime('%d/%m/%Y %H:%M') }}</td>
+<td>{{ p.usuario }}</td>
+<td>{{ p.servicio }}</td>
+<td>${{ "%.2f"|format(p.monto) }}</td>
+<td>{{ p.codigo_transferencia }}</td>
+<td><span class="badge bg-{{ p.estado|clase_estado }}">{{ p.estado|capitalize }}</span></td>
+<td class="text-nowrap">
+<a class="btn btn-sm btn-outline-info" href="{{ url_for('comprobante', id_pago=p.id_pago) }}" target="_blank" rel="noopener noreferrer" title="Ver comprobante">
+<i class="bi bi-image"></i>
+</a>
+<a class="btn btn-sm btn-outline-secondary" href="{{ url_for('factura', id_pago=p.id_pago) }}" target="_blank" rel="noopener noreferrer" title="Ver factura">
+<i class="bi bi-file-earmark-text"></i>
+</a>
+{% if p.estado != 'verificado' %}
+<form method="POST" action="{{ url_for('cambiar_estado_pago', id_pago=p.id_pago) }}" class="d-inline">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<button name="estado" value="verificado" class="btn btn-sm btn-success" title="Marcar como verificado">
+<i class="bi bi-check-lg"></i>
+</button>
+</form>
+{% endif %}
+{% if p.estado != 'rechazado' %}
+<form method="POST" action="{{ url_for('cambiar_estado_pago', id_pago=p.id_pago) }}" class="d-inline"
+      onsubmit="return confirm('¿Rechazar este pago?');">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<button name="estado" value="rechazado" class="btn btn-sm btn-danger" title="Rechazar">
+<i class="bi bi-x-lg"></i>
+</button>
+</form>
+{% endif %}
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+
+{% endif %}
+
+</section>
+
+{% endblock %}

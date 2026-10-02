@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Encargar {{ servicio.titulo }} - Leggy{% endblock %}
+
+{% block content %}
+
+<section id="encargar">
+
+<h2 class="text-center m-4">
+{{ servicio.titulo }}
+</h2>
+
+<p class="text-center text-muted">{{ servicio.descripcion }}</p>
+
+{% if precio %}
+<p class="text-center fs-5">Precio: <strong>${{ "%.2f"|format(precio) }}</strong></p>
+{% endif %}
+
+<div class="row justify-content-center">
+
+<div class="col-md-8">
+
+<div class="card sin-hover p-3 mb-4">
+<div class="card-body">
+<h5><span class="badge bg-warning text-dark me-2">1</span> Envíame la foto que quieres que dibuje</h5>
+<p>
+Se abrirá WhatsApp con el mensaje listo. Toca el clip <i class="bi bi-paperclip"></i>,
+adjunta tu foto y envíala.
+</p>
+<a class="btn btn-success w-100"
+   href="{{ wa_link('Hola Leggy, quiero encargar: ' ~ servicio.titulo ~ '. Te envío la foto que quiero que dibujes:') }}"
+   target="_blank" rel="noopener noreferrer">
+<i class="bi bi-whatsapp"></i> Abrir WhatsApp y enviar mi foto
+</a>
+</div>
+</div>
+
+<div class="card sin-hover p-3 mb-4">
+<div class="card-body">
+<h5><span class="badge bg-warning text-dark me-2">2</span> ¿Cómo quieres continuar?</h5>
+<div class="row g-2">
+<div class="col-md-6">
+<a class="btn btn-warning w-100" href="{{ url_for('pagar', servicio=servicio.tipo_solicitud) }}">
+<i class="bi bi-bank"></i> Continuar con el pago
+</a>
+</div>
+<div class="col-md-6">
+<a class="btn btn-outline-success w-100"
+   href="{{ wa_link('Hola Leggy, quiero más detalles sobre: ' ~ servicio.titulo) }}"
+   target="_blank" rel="noopener noreferrer">
+<i class="bi bi-whatsapp"></i> Seguir por WhatsApp
+</a>
+</div>
+</div>
+<p class="small text-muted mt-3 mb-0">
+El pago es solo por transferencia. Necesitas una cuenta para registrar tu comprobante y obtener tu factura.
+</p>
+</div>
+</div>
+
+<a href="{{ url_for('servicios') }}" class="btn btn-outline-secondary">Volver a servicios</a>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

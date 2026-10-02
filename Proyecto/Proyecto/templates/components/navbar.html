@@ -1,0 +1,105 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+
+<div class="container">
+
+<a class="navbar-brand" href="{{ url_for('index') }}">
+<i class="bi bi-brush"></i> Leggy
+</a>
+
+<button
+class="navbar-toggler"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#menu">
+
+<span class="navbar-toggler-icon"></span>
+
+</button>
+
+<div class="collapse navbar-collapse" id="menu">
+
+<ul class="navbar-nav ms-auto align-items-lg-center">
+
+<li class="nav-item">
+<a class="nav-link" href="{{ url_for('index') }}">Inicio</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="{{ url_for('index') }}#quienes">Quiénes Somos</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="{{ url_for('servicios') }}">Servicios</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="{{ url_for('contacto') }}">Contacto</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="https://www.instagram.com/leggy_val" target="_blank" rel="noopener noreferrer" title="Instagram">
+<i class="bi bi-instagram"></i><span class="d-lg-none"> Instagram</span>
+</a>
+</li>
+
+{% if current_user.is_authenticated %}
+
+{% if current_user.es_admin %}
+
+<li class="nav-item">
+<a class="nav-link" href="{{ url_for('dashboard') }}">Panel</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="{{ url_for('admin_pagos') }}">Pagos</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="{{ url_for('clientes') }}">Clientes</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="{{ url_for('solicitudes') }}">Solicitudes</a>
+</li>
+
+{% else %}
+
+<li class="nav-item">
+<a class="nav-link" href="{{ url_for('pagar') }}">Pagar</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="{{ url_for('mis_pagos') }}">Mis pagos</a>
+</li>
+
+{% endif %}
+
+<li class="nav-item">
+<span class="navbar-text usuario-actual mx-lg-2">
+<i class="bi bi-person-circle"></i> {{ current_user.usuario }}
+</span>
+</li>
+
+<li class="nav-item">
+<a class="btn btn-outline-warning btn-sm" href="{{ url_for('logout') }}">Cerrar sesión</a>
+</li>
+
+{% else %}
+
+<li class="nav-item">
+<a class="nav-link" href="{{ url_for('login') }}">Ingresar</a>
+</li>
+
+<li class="nav-item">
+<a class="btn btn-warning btn-sm" href="{{ url_for('registro') }}">Registrarse</a>
+</li>
+
+{% endif %}
+
+</ul>
+
+</div>
+
+</div>
+
+</nav>

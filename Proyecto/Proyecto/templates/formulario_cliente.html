@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Modificar cliente - Leggy{% endblock %}
+
+{% block content %}
+
+<section id="editar-cliente">
+
+<h2 class="text-center m-4">
+Modificar Cliente #{{ cliente.id_cliente }}
+</h2>
+
+<div class="row justify-content-center">
+
+<div class="col-md-6">
+
+{% include "components/_form_cliente.html" %}
+
+<a href="{{ url_for('clientes') }}" class="btn btn-outline-secondary mt-3">Cancelar</a>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

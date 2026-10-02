@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}{{ titulo or "Error" }} - Leggy{% endblock %}
+
+{% block content %}
+
+<section class="text-center m-5">
+<h2>{{ titulo or "No se pudo acceder a la base de datos" }}</h2>
+<p class="text-muted">{{ mensaje or "Verifica que PostgreSQL esté encendido y que los datos del archivo .env sean correctos." }}</p>
+<a href="{{ url_for('index') }}" class="btn btn-warning">Volver al inicio</a>
+</section>
+
+{% endblock %}
